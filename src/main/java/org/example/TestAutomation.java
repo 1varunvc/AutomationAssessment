@@ -1,4 +1,4 @@
-package main.java.org.example.test.one;
+package org.example;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
@@ -7,7 +7,8 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class Test1 {
+
+public class TestAutomation {
     public static void main (String[] args) {
 
 
@@ -17,9 +18,9 @@ public class Test1 {
         try {
             driver.get("http://automationpractice.com/");
             System.out.println("1. Application opened.");
-        } catch (TimeoutException e) {
-            System.out.println(e);
-//            ex.printStackTrace(e);
+        } catch (TimeoutException ex) {
+//            System.out.println(e);
+            ex.printStackTrace();
         }
 
         // 2. Verify we're on the correct website.
@@ -47,9 +48,9 @@ public class Test1 {
         try {
             driver.findElement(By.xpath("//p[text()='Your message has been successfully sent to our team.']"));
             System.out.println("6. Message sent successfully.");
-        } catch(NoSuchElementException e) {
-//            ex.printStackTrace(e);
-            System.out.println(e);
+        } catch(NoSuchElementException ex) {
+            ex.printStackTrace();
+//            System.out.println(e);
         }
 
         driver.quit();
