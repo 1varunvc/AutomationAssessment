@@ -1,4 +1,4 @@
-package com.testframework.pages;
+package com.testframework.object_repo;
 
 import org.openqa.selenium.By;
 

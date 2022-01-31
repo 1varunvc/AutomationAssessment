@@ -1,9 +1,9 @@
-package com.testframework.actions;
+package com.testframework.page_func;
 
-import com.testframework.pages.Contact;
-import com.testframework.pages.Index;
+import com.testframework.object_repo.Contact;
+import com.testframework.object_repo.Index;
+import com.testframework.utils.CoreActions;
 import io.qameta.allure.Step;
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
 public class ContactImpl extends CoreActions {
@@ -17,7 +17,7 @@ public class ContactImpl extends CoreActions {
         return bot.getCurrentUrl().contains("http://www.seleniumframework.com/");
     }
 
-    @Step("Navigate to 'Contact' pagr.")
+    @Step("Navigate to 'Contact' page.")
     public void goToContactPage() {
         waitForVisibility(Index.CONTACT_PAGE_BUTTON);
         click(Index.CONTACT_PAGE_BUTTON);
@@ -54,17 +54,30 @@ public class ContactImpl extends CoreActions {
     }
 
     @Step("Validate if the message has been sent.")
-    public void verifySubmissionMessage() {
-        Assert.assertEquals("Feedback has been sent to the administrator", "There was an error sending feedback to the administrator.");
+    public boolean verifySubmissionMessage() {
+        waitForVisibility(Contact.MESSAGE_SENT);
+        return bot.findElement(Contact.MESSAGE_SENT).isDisplayed();
     }
 
     @Step("Validate for input of invalid email address.")
     public boolean validateInvalidEmail(){
-        return Contact.MESSAGE_INVALID_EMAIL.equals("* Invalid email address");
+        waitForVisibility(Contact.MESSAGE_INVALID_EMAIL);
+        return bot.findElement(Contact.MESSAGE_INVALID_EMAIL).isDisplayed();
     }
 
     @Step("Wait for a few seconds.")
     public void waitFor2s() {
         sleep(2);
+    }
+
+    @Step("Close browser tab.")
+    public void closeBrowser() {
+        bot.close();
+    }
+
+    @Step("Navigate to test website.")
+    public void openTestWebsite() {
+        String websiteURL = "http://www.seleniumframework.com";
+        bot.get(websiteURL);
     }
 }

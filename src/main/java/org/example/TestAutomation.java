@@ -1,3 +1,5 @@
+// This class is obsolete.
+
 package org.example;
 
 import org.openqa.selenium.By;

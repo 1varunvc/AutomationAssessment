@@ -1,4 +1,4 @@
-package com.testframework.actions;
+package com.testframework.utils;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;

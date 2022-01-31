@@ -1,6 +1,6 @@
 package core;
 
-import com.testframework.Bot;
+import com.testframework.page_func.Bot;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;

@@ -1,6 +1,6 @@
 package contact;
 
-import com.testframework.actions.ContactImpl;
+import com.testframework.page_func.ContactImpl;
 import core.CoreTestIntegration;
 import core.Listener;
 import io.qameta.allure.*;
@@ -55,6 +55,9 @@ public class ContactTests extends CoreTestIntegration {
 
         logStep("Wait for 2 seconds.");
         contact.waitFor2s();
+
+        logStep("Quit browser");
+        contact.closeBrowser();
     }
 
     @Test(dependsOnMethods = "initImpl")
@@ -64,6 +67,9 @@ public class ContactTests extends CoreTestIntegration {
     @Feature("FEATURE 1")
     @Owner("Varun Chawla")
     public void test_to_submit_message_negative_email() {
+
+        logStep("Open test website.");
+        contact.openTestWebsite();
 
         logStep("Validate we're on the correct website.");
         Assert.assertTrue(contact.validateWebsite(), "We are on the correct website.");
@@ -87,7 +93,7 @@ public class ContactTests extends CoreTestIntegration {
         contact.submit();
 
         logStep("Form submission message verification.");
-        Assert.assertTrue(contact.validateInvalidEmail(), "Input email address was incorrect.");
+        contact.validateInvalidEmail();
 
         logStep("Wait for 2 seconds.");
         contact.waitFor2s();
