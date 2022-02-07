@@ -1,8 +1,8 @@
-package com.testframework.page_func;
+package com.seleniumframework.page_func;
 
-import com.testframework.object_repo.Contact;
-import com.testframework.object_repo.Index;
-import com.testframework.utils.CoreActions;
+import com.seleniumframework.object_repo.Contact;
+import com.seleniumframework.object_repo.Index;
+import com.seleniumframework.utils.CoreActions;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 

@@ -1,6 +1,6 @@
-package contact;
+package com.seleniumframework.contact;
 
-import com.testframework.page_func.ContactImpl;
+import com.seleniumframework.page_func.ContactImpl;
 import core.CoreTestIntegration;
 import core.Listener;
 import io.qameta.allure.*;
