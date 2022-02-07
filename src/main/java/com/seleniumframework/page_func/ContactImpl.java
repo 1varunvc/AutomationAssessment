@@ -25,32 +25,32 @@ public class ContactImpl extends CoreActions {
 
     @Step("Input name.")
     public void inputName(final String inputString) {
-        waitForVisibility(Contact.INPUT_NAME);
-        enterText(Contact.INPUT_NAME, inputString);
+        waitForVisibility(Contact.NAME_TXTBOX);
+        enterText(Contact.NAME_TXTBOX, inputString);
     }
 
     @Step("Input e-mail address.")
     public void inputEmail(final String inputString) {
-        waitForVisibility(Contact.INPUT_EMAIL);
-        enterText(Contact.INPUT_EMAIL, inputString);
+        waitForVisibility(Contact.EMAIL_TXTBOX);
+        enterText(Contact.EMAIL_TXTBOX, inputString);
     }
 
     @Step("Input telephone number.")
     public void inputTelephone(final String inputString) {
-        waitForVisibility(Contact.INPUT_TELEPHONE);
-        enterText(Contact.INPUT_TELEPHONE, inputString);
+        waitForVisibility(Contact.TELEPHONE_TXTBOX);
+        enterText(Contact.TELEPHONE_TXTBOX, inputString);
     }
 
     @Step("Type the message.")
     public void inputMessage(final String inputString) {
-        waitForVisibility(Contact.INPUT_MESSAGE);
-        enterText(Contact.INPUT_MESSAGE, inputString);
+        waitForVisibility(Contact.MESSAGE_TXTBOX);
+        enterText(Contact.MESSAGE_TXTBOX, inputString);
     }
 
     @Step("Submit message.")
     public void submit() {
-        waitForVisibility(Contact.SUBMIT);
-        click(Contact.SUBMIT);
+        waitForVisibility(Contact.SUBMIT_BTN);
+        click(Contact.SUBMIT_BTN);
     }
 
     @Step("Validate if the message has been sent.")
@@ -64,7 +64,7 @@ public class ContactImpl extends CoreActions {
         waitForVisibility(Contact.MESSAGE_INVALID_EMAIL);
         return bot.findElement(Contact.MESSAGE_INVALID_EMAIL).isDisplayed();
     }
-
+/*
     @Step("Wait for a few seconds.")
     public void waitFor2s() {
         sleep(2);
@@ -80,4 +80,5 @@ public class ContactImpl extends CoreActions {
         String websiteURL = "http://www.seleniumframework.com";
         bot.get(websiteURL);
     }
+*/
 }
