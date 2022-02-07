@@ -1,4 +1,4 @@
-package com.seleniumframework.utils;
+package utils;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;

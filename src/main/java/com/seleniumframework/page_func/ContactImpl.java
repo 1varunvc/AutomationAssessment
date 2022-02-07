@@ -2,7 +2,7 @@ package com.seleniumframework.page_func;
 
 import com.seleniumframework.object_repo.Contact;
 import com.seleniumframework.object_repo.Index;
-import com.seleniumframework.utils.CoreActions;
+import utils.CoreActions;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 
