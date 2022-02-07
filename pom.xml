@@ -30,7 +30,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
-      <version>4.1.1</version>
+      <version>4.1.2</version>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/org.testng/testng -->
@@ -38,7 +38,7 @@
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
       <version>7.5</version>
-      <scope>test</scope>
+      <scope>src.test</scope>
     </dependency>
 
     <dependency>

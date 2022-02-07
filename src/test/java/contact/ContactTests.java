@@ -52,12 +52,6 @@ public class ContactTests extends CoreTestIntegration {
 
         logStep("Form submission message verification.");
         contact.verifySubmissionMessage();
-
-        logStep("Wait for 2 seconds.");
-        contact.waitFor2s();
-
-        logStep("Close browser");
-        close();
     }
 
     @Test(dependsOnMethods = "initImpl")
@@ -67,9 +61,6 @@ public class ContactTests extends CoreTestIntegration {
     @Feature("FEATURE 1")
     @Owner("Varun Chawla")
     public void test_to_submit_message_negative_email() {
-
-        logStep("Open test website.");
-        openBrowser();
 
         logStep("Validate we're on the correct website.");
         Assert.assertTrue(contact.validateWebsite(), "We are on the correct website.");
@@ -94,9 +85,6 @@ public class ContactTests extends CoreTestIntegration {
 
         logStep("Form submission message verification.");
         contact.validateInvalidEmail();
-
-        logStep("Wait for 2 seconds.");
-        contact.waitFor2s();
     }
 }
 

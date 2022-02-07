@@ -1,0 +1,1 @@
+{"uuid":"52f9d7c0-bc24-4e70-af53-d1db7a7b8843","name":"core.CoreTestIntegration.close","children":["539ff549-dc55-4728-87ba-260aa0ae30c0"],"description":"","befores":[],"afters":[{"name":"close","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1644222639847,"stop":1644222640008}],"start":1644222639847,"stop":1644222640008}

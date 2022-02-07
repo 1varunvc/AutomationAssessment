@@ -1,26 +1,27 @@
 package core;
 
 import com.testframework.page_func.Bot;
+import data_provider.Constants;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 
 public class CoreTestIntegration {
 
     protected WebDriver bot;
-    protected static final String URL = "http://www.seleniumframework.com/";
+    Constants constants;
 
-    @BeforeClass
+    @BeforeTest
     public void openBrowser() {
         bot = new Bot().getBot();
-        bot.get(URL);
+        bot.get(constants.configFileReader("URLSeleniumFramework"));
     }
 
     protected static void logStep(String step) {
         Logger.step(step);
     }
 
-    @AfterClass
+    @AfterTest
     public void close() {
         bot.quit();
     }
