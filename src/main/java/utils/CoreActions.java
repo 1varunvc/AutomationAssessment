@@ -48,4 +48,8 @@ public class CoreActions {
             e.printStackTrace();
         }
     }
+
+    protected String getText(By element) {
+        return bot.findElement(element).getText();
+    }
 }

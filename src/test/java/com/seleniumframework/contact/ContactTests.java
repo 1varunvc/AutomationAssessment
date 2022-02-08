@@ -1,7 +1,7 @@
 package com.seleniumframework.contact;
 
-import com.seleniumframework.page_func.ContactImpl;
-import core.CoreTestIntegration;
+import com.seleniumframework.page_functions.ContactImpl;
+import com.seleniumframework.core.CoreTestIntegrationSF;
 import core.Listener;
 import io.qameta.allure.*;
 import org.testng.Assert;
@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 @Test
 @Epic("EPIC 1")
 @Listeners(Listener.class)
-public class ContactTests extends CoreTestIntegration {
+public class ContactTests extends CoreTestIntegrationSF {
 
     ContactImpl contact;
 
@@ -22,7 +22,8 @@ public class ContactTests extends CoreTestIntegration {
     }
 
     @Test(dependsOnMethods = "initImpl")
-    @Description("Tests that the user can submit a message to www.seleniumframework.com via their 'contact' page.")
+    @Description("Test1 that the user can submit a message to " +
+        "www.seleniumframework.com via their 'contact' page.")
     @Severity(SeverityLevel.NORMAL)
     @Story("STORY 1")
     @Feature("FEATURE 1")
@@ -55,7 +56,8 @@ public class ContactTests extends CoreTestIntegration {
     }
 
     @Test(dependsOnMethods = "initImpl")
-    @Description("Tests that the user cannot submit a message with 'invalid email input', to www.seleniumframework.com via their 'contact' page.")
+    @Description("Test1 that the user cannot submit a message with " +
+        "'invalid email input', to www.seleniumframework.com via their 'contact' page.")
     @Severity(SeverityLevel.NORMAL)
     @Story("STORY 1")
     @Feature("FEATURE 1")

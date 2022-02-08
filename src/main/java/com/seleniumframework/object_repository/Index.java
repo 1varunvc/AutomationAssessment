@@ -1,4 +1,4 @@
-package com.seleniumframework.object_repo;
+package com.seleniumframework.object_repository;
 
 import org.openqa.selenium.By;
 

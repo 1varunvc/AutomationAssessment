@@ -1,12 +1,13 @@
-package core;
+package com.saucedemo.core;
 
-import com.seleniumframework.page_func.Bot;
+import core.Logger;
 import data_provider.Constants;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import utils.Bot;
 
-public class CoreTestIntegration {
+public class CoreTestIntegrationSD {
 
     protected WebDriver bot;
     Constants constants;
@@ -14,7 +15,7 @@ public class CoreTestIntegration {
     @BeforeTest
     public void openBrowser() {
         bot = new Bot().getBot();
-        bot.get(constants.configFileReader("URLSeleniumFramework"));
+        bot.get(constants.configFileReader("URLSauceDemo"));
     }
 
     protected static void logStep(String step) {
@@ -27,3 +28,4 @@ public class CoreTestIntegration {
     }
 
 }
+
