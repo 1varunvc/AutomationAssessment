@@ -19,15 +19,18 @@ public class HomeImpl extends CoreActions {
         waitForVisibility(Home.ADD_TO_CART);
 
 //        https://stackoverflow.com/a/34895458/14597561
-//        https://stackoverflow.com/a/30232809/14597561
         List<WebElement> addToCartList = bot.findElements(Home.ADD_TO_CART);
 
 //        https://stackoverflow.com/a/5887745/14597561
         Random random = new Random();
-        int randomN = random.nextInt(addToCartList.size());
+        int randomN = random.nextInt(6);
 
-        addToCartList.get(randomN).click();
-//        click(addToCartList.get(randomN));
+        click(addToCartList.get(randomN));
+
+//        https://stackoverflow.com/a/30232809/14597561
+//        The following works as well.
+//        addToCartList.get(randomN).click();
+
     }
 
     @Step("Go to cart.")

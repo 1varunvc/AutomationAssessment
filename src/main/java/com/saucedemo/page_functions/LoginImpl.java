@@ -32,7 +32,7 @@ public class LoginImpl extends CoreActions {
 //        for(int i = 0; i < loginUsernamesArray.length; i++) {
             waitForVisibility(Login.USERNAME_TXTBOX);
             bot.findElement(Login.USERNAME_TXTBOX).clear();
-            enterText(Login.USERNAME_TXTBOX, loginUsernamesArray[0]);
+            enterText(Login.USERNAME_TXTBOX, loginUsernamesArray[1]);
 
             waitForVisibility(Login.PASSWORD_TXTBOX);
             bot.findElement(Login.PASSWORD_TXTBOX).clear();

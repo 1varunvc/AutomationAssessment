@@ -18,10 +18,13 @@ public class Test1 extends CoreTestIntegrationSD {
 
     @Test
     @Description("Create 'impl' object before class.")
-    public void initImpl() { login = new LoginImpl(bot);}
+    public void initImpl() {
+        login = new LoginImpl(bot);
+        home = new HomeImpl(bot);
+    }
 
     @Test(dependsOnMethods = "initImpl")
-    @Description("www.saucedemo.com - Test1 that the user can make successful purchase of item.")
+    @Description("www.saucedemo.com - Tests that the user can make successful purchase of item.")
     @Severity(SeverityLevel.CRITICAL)
     @Story("STORY 1")
     @Feature("FEATURE 1")
