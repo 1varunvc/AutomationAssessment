@@ -1,5 +1,6 @@
 package com.saucedemo.tests;
 
+import com.saucedemo.page_functions.HomeImpl;
 import com.saucedemo.page_functions.LoginImpl;
 import com.saucedemo.core.CoreTestIntegrationSD;
 import core.Listener;
@@ -13,6 +14,7 @@ import org.testng.annotations.Test;
 public class Test1 extends CoreTestIntegrationSD {
 
     LoginImpl login;
+    HomeImpl home;
 
     @Test
     @Description("Create 'impl' object before class.")
@@ -33,6 +35,12 @@ public class Test1 extends CoreTestIntegrationSD {
 
         logStep("Login to the application.");
         login.login();
+
+        logStep("Add random item to cart.");
+        home.addToCart();
+
+        logStep("Go to cart.");
+        home.goToCart();
     }
 
 }
