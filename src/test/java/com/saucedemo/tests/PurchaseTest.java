@@ -1,8 +1,6 @@
 package com.saucedemo.tests;
 
-import com.saucedemo.page_functions.CartImpl;
-import com.saucedemo.page_functions.HomeImpl;
-import com.saucedemo.page_functions.LoginImpl;
+import com.saucedemo.page_functions.*;
 import com.saucedemo.core.CoreTestIntegrationSD;
 import core.Listener;
 import io.qameta.allure.*;
@@ -17,6 +15,9 @@ public class PurchaseTest extends CoreTestIntegrationSD {
     LoginImpl login;
     HomeImpl home;
     CartImpl cart;
+    CheckoutFillImpl checkoutFill;
+    CheckoutOverviewImpl checkoutOverview;
+    CheckoutCompleteImpl checkoutComplete;
 
     @Test
     @Description("Create 'impl' object before class.")
@@ -24,6 +25,9 @@ public class PurchaseTest extends CoreTestIntegrationSD {
         login = new LoginImpl(bot);
         home = new HomeImpl(bot);
         cart = new CartImpl(bot);
+        checkoutFill = new CheckoutFillImpl(bot);
+        checkoutOverview = new CheckoutOverviewImpl(bot);
+        checkoutComplete = new CheckoutCompleteImpl(bot);
     }
 
     @Test(dependsOnMethods = "initImpl")
@@ -42,8 +46,14 @@ public class PurchaseTest extends CoreTestIntegrationSD {
         logStep("Login to the application.");
         login.login();
 
+        logStep("Generate random number. Range: No. of articles on the page.");
+        int randomN = home.generateRandom();
+
         logStep("Pick random article.");
-        home.pickAnyArticle();
+        String[] articleArray = home.pickAnyArticle();
+
+        logStep("Store price of all the articles");
+        String[] priceArray = home.storePrice();
 
         logStep("Add that article to cart.");
         home.addToCart();
@@ -51,8 +61,26 @@ public class PurchaseTest extends CoreTestIntegrationSD {
         logStep("Go to cart.");
         home.goToCart();
 
-        logStep("Verify that the article added to cart is correct");
-        cart.verifyItem();
+        logStep("Verify that the article added to the cart is correct.");
+        cart.verifyArticle(articleArray, priceArray, randomN);
+
+        logStep("Click checkout.");
+        cart.clickCheckout();
+
+        logStep("Fill checkout details and click 'continue.");
+        checkoutFill.fillCheckoutDetails();
+
+        logStep("Click 'finish' and checkout.");
+        checkoutOverview.clickFinish();
+
+        logStep("Verify purchase success message.");
+        checkoutComplete.verifyPurchaseSuccess();
+
+        logStep("Click 'cart'.");
+        checkoutComplete.goToCart();
+
+        logStep("Validate that the cart is empty.");
+        cart.validateCartEmptiness();
     }
 
 }

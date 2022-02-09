@@ -14,35 +14,41 @@ public class HomeImpl extends CoreActions {
         super(bot);
     }
 
-    public static int randomN;
-    public static String[] articleArray;
-    public static String[] priceArray;
+    int randomN;
 
-    @Step("Select random article.")
-    public void pickAnyArticle() {
-
+    @Step("Generate random number.")
+    public int generateRandom() {
         // https://stackoverflow.com/a/5887745/14597561
         Random random = new Random();
-        randomN = random.nextInt(6);
+        return randomN = random.nextInt(6);
+    }
 
+    @Step("Select random article.")
+    public String[] pickAnyArticle() {
+        waitForVisibility(Home.ARTICLES);
         List<WebElement> articleList = bot.findElements(Home.ARTICLES);
+
         String[] articleArray = new String[articleList.size()];
 
         for (int i = 0; i < articleList.size(); i++ ) {
             articleArray[i] = articleList.get(i).getText();
         }
 
-//        System.out.println(articleList);
-//        System.out.println(articleArray);
+        return articleArray;
+    }
 
-
+    @Step("Store price of all the articles.")
+    public String[] storePrice() {
+        waitForVisibility(Home.PRICES);
         List<WebElement> priceList = bot.findElements(Home.PRICES);
+
         String[] priceArray = new String[priceList.size()];
 
         for (int i = 0; i < priceList.size(); i++) {
             priceArray[i] = priceList.get(i).getText();
-            System.out.println(articleArray[i]);
         }
+
+        return priceArray;
     }
 
     @Step("Add that article to cart.")
@@ -64,8 +70,9 @@ public class HomeImpl extends CoreActions {
     }
 
     @Step("Go to cart.")
-    public void goToCart() {
+    public CartImpl goToCart() {
         click(Home.CART);
+        return new CartImpl(bot);
     }
 
 }

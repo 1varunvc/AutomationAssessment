@@ -1,13 +1,10 @@
 package com.saucedemo.page_functions;
 
-import com.saucedemo.object_repository.Home;
 import com.saucedemo.object_repository.Login;
 import io.qameta.allure.Step;
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import utils.CoreActions;
 
-import static org.junit.Assert.assertTrue;
 
 public class LoginImpl extends CoreActions {
     public LoginImpl(WebDriver bot) {
@@ -55,7 +52,6 @@ public class LoginImpl extends CoreActions {
                 continue;
             }
         }
-
         return null;
     }
 }

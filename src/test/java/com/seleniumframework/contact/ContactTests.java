@@ -2,6 +2,7 @@ package com.seleniumframework.contact;
 
 import com.seleniumframework.page_functions.ContactImpl;
 import com.seleniumframework.core.CoreTestIntegrationSF;
+import com.seleniumframework.page_functions.IndexImpl;
 import core.Listener;
 import io.qameta.allure.*;
 import org.testng.Assert;
@@ -14,11 +15,13 @@ import org.testng.annotations.Test;
 public class ContactTests extends CoreTestIntegrationSF {
 
     ContactImpl contact;
+    IndexImpl index;
 
     @Test
     @Description("Create 'impl' object before class.")
     public void initImpl() {
         contact = new ContactImpl(bot);
+        index = new IndexImpl(bot);
     }
 
     @Test(dependsOnMethods = "initImpl")
@@ -34,7 +37,7 @@ public class ContactTests extends CoreTestIntegrationSF {
         Assert.assertTrue(contact.validateWebsite(), "We are on the correct website.");
 
         logStep("Navigate to 'contact' page.");
-        contact.goToContactPage();
+        index.goToContactPage();
 
         logStep("Input name.");
         contact.inputName("Varun Chawla");
@@ -68,7 +71,7 @@ public class ContactTests extends CoreTestIntegrationSF {
         Assert.assertTrue(contact.validateWebsite(), "We are on the correct website.");
 
         logStep("Navigate to 'contact' page.");
-        contact.goToContactPage();
+        index.goToContactPage();
 
         logStep("Input name.");
         contact.inputName("Varun Chawla");
