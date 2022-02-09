@@ -22,7 +22,7 @@ public class ContactTests extends CoreTestIntegrationSF {
     }
 
     @Test(dependsOnMethods = "initImpl")
-    @Description("Test1 that the user can submit a message to " +
+    @Description("Purchase that the user can submit a message to " +
         "www.seleniumframework.com via their 'contact' page.")
     @Severity(SeverityLevel.NORMAL)
     @Story("STORY 1")
@@ -56,7 +56,7 @@ public class ContactTests extends CoreTestIntegrationSF {
     }
 
     @Test(dependsOnMethods = "initImpl")
-    @Description("Test1 that the user cannot submit a message with " +
+    @Description("Purchase that the user cannot submit a message with " +
         "'invalid email input', to www.seleniumframework.com via their 'contact' page.")
     @Severity(SeverityLevel.NORMAL)
     @Story("STORY 1")

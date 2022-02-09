@@ -1,5 +1,6 @@
 package com.saucedemo.tests;
 
+import com.saucedemo.page_functions.CartImpl;
 import com.saucedemo.page_functions.HomeImpl;
 import com.saucedemo.page_functions.LoginImpl;
 import com.saucedemo.core.CoreTestIntegrationSD;
@@ -11,16 +12,18 @@ import org.testng.annotations.Test;
 @Test
 @Epic("Epic 1")
 @Listeners(Listener.class)
-public class Test1 extends CoreTestIntegrationSD {
+public class PurchaseTest extends CoreTestIntegrationSD {
 
     LoginImpl login;
     HomeImpl home;
+    CartImpl cart;
 
     @Test
     @Description("Create 'impl' object before class.")
     public void initImpl() {
         login = new LoginImpl(bot);
         home = new HomeImpl(bot);
+        cart = new CartImpl(bot);
     }
 
     @Test(dependsOnMethods = "initImpl")
@@ -31,7 +34,7 @@ public class Test1 extends CoreTestIntegrationSD {
     @Owner("Varun Chawla")
     public void test_to_verify_item_purchase_success() {
         logStep("Validate that we're on the correct website.");
-
+        login.validateWebsite();
 
         logStep("Get credentials from DOM.");
         login.getCredentials();
@@ -39,11 +42,17 @@ public class Test1 extends CoreTestIntegrationSD {
         logStep("Login to the application.");
         login.login();
 
-        logStep("Add random item to cart.");
+        logStep("Pick random article.");
+        home.pickAnyArticle();
+
+        logStep("Add that article to cart.");
         home.addToCart();
 
         logStep("Go to cart.");
         home.goToCart();
+
+        logStep("Verify that the article added to cart is correct");
+        cart.verifyItem();
     }
 
 }
