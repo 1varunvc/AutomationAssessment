@@ -1,6 +1,5 @@
 package com.saucedemo.tests;
 
-import com.saucedemo.page_functions.*;
 import com.saucedemo.core.CoreTestIntegrationSD;
 import core.Listener;
 import io.qameta.allure.*;
@@ -12,25 +11,7 @@ import org.testng.annotations.Test;
 @Listeners(Listener.class)
 public class PurchaseTest extends CoreTestIntegrationSD {
 
-    LoginImpl login;
-    HomeImpl home;
-    CartImpl cart;
-    CheckoutFillImpl checkoutFill;
-    CheckoutOverviewImpl checkoutOverview;
-    CheckoutCompleteImpl checkoutComplete;
-
     @Test
-    @Description("Create 'impl' object before class.")
-    public void initImpl() {
-        login = new LoginImpl(bot);
-        home = new HomeImpl(bot);
-        cart = new CartImpl(bot);
-        checkoutFill = new CheckoutFillImpl(bot);
-        checkoutOverview = new CheckoutOverviewImpl(bot);
-        checkoutComplete = new CheckoutCompleteImpl(bot);
-    }
-
-    @Test(dependsOnMethods = "initImpl")
     @Description("www.saucedemo.com - Tests that the user can make successful purchase of item.")
     @Severity(SeverityLevel.CRITICAL)
     @Story("STORY 1")
@@ -44,34 +25,34 @@ public class PurchaseTest extends CoreTestIntegrationSD {
         login.getCredentials();
 
         logStep("Login to the application.");
-        login.login();
+        home = login.login();
 
         logStep("Generate random number. Range: No. of articles on the page.");
         int randomN = home.generateRandom();
 
         logStep("Pick random article.");
-        String[] articleArray = home.pickAnyArticle();
+        String[] articleArray = home.createArticleArray();
 
         logStep("Store price of all the articles");
-        String[] priceArray = home.storePrice();
+        String[] priceArray = home.createPriceArray();
 
         logStep("Add that article to cart.");
         home.addToCart();
 
         logStep("Go to cart.");
-        home.goToCart();
+        cart = home.goToCart();
 
         logStep("Verify that the article added to the cart is correct.");
         cart.verifyArticle(articleArray, priceArray, randomN);
 
         logStep("Click checkout.");
-        cart.clickCheckout();
+        checkoutFill = cart.clickCheckout();
 
         logStep("Fill checkout details and click 'continue.");
-        checkoutFill.fillCheckoutDetails();
+        checkoutOverview = checkoutFill.fillCheckoutDetails();
 
         logStep("Click 'finish' and checkout.");
-        checkoutOverview.clickFinish();
+        checkoutComplete = checkoutOverview.clickFinish();
 
         logStep("Verify purchase success message.");
         checkoutComplete.verifyPurchaseSuccess();

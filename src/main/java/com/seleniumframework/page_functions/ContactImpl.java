@@ -1,7 +1,8 @@
 package com.seleniumframework.page_functions;
 
 import com.seleniumframework.object_repository.Contact;
-import org.junit.Assert;
+import org.testng.SkipException;
+import org.testng.asserts.SoftAssert;
 import utils.CoreActions;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
@@ -10,12 +11,12 @@ public class ContactImpl extends CoreActions {
 
     public ContactImpl(WebDriver bot) {
         super(bot);
+        if (!bot.findElement(Contact.NAME_TXTBOX).isDisplayed()) {
+            throw new SkipException("The 'contact' page did not load.");
+        }
     }
 
-    @Step("Validate if the user has arrived on the correct website.")
-    public boolean validateWebsite() {
-        return bot.getCurrentUrl().contains("http://www.seleniumframework.com/");
-    }
+    SoftAssert softAssert = new SoftAssert();
 
     @Step("Input name.")
     public void inputName(final String inputString) {
@@ -50,13 +51,13 @@ public class ContactImpl extends CoreActions {
     @Step("Validate if the message has been sent.")
     public void verifySubmissionMessage() {
         waitForVisibility(Contact.MESSAGE_SENT);
-        Assert.assertTrue(bot.findElement(Contact.MESSAGE_SENT).isDisplayed());
+        softAssert.assertTrue(bot.findElement(Contact.MESSAGE_SENT).isDisplayed());
     }
 
     @Step("Validate for input of invalid email address.")
     public void validateInvalidEmail(){
         waitForVisibility(Contact.MESSAGE_INVALID_EMAIL);
-        Assert.assertTrue(bot.findElement(Contact.MESSAGE_INVALID_EMAIL).isDisplayed());
+        softAssert.assertTrue(bot.findElement(Contact.MESSAGE_INVALID_EMAIL).isDisplayed());
     }
 
  /*

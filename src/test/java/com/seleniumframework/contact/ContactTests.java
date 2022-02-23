@@ -1,11 +1,8 @@
 package com.seleniumframework.contact;
 
-import com.seleniumframework.page_functions.ContactImpl;
 import com.seleniumframework.core.CoreTestIntegrationSF;
-import com.seleniumframework.page_functions.IndexImpl;
 import core.Listener;
 import io.qameta.allure.*;
-import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -14,30 +11,16 @@ import org.testng.annotations.Test;
 @Listeners(Listener.class)
 public class ContactTests extends CoreTestIntegrationSF {
 
-    ContactImpl contact;
-    IndexImpl index;
-
-    @Test
-    @Description("Create 'impl' object before class.")
-    public void initImpl() {
-        contact = new ContactImpl(bot);
-        index = new IndexImpl(bot);
-    }
-
-    @Test(dependsOnMethods = "initImpl")
-    @Description("Purchase that the user can submit a message to " +
-        "www.seleniumframework.com via their 'contact' page.")
+    @Test (priority = 1)
+    @Description("Verify that the user can submit a message to www.seleniumframework.com via their 'contact' page.")
     @Severity(SeverityLevel.NORMAL)
     @Story("STORY 1")
     @Feature("FEATURE 1")
     @Owner("Varun Chawla")
     public void test_to_submit_message_positive_email() {
 
-        logStep("Validate we're on the correct website.");
-        Assert.assertTrue(contact.validateWebsite(), "We are on the correct website.");
-
         logStep("Navigate to 'contact' page.");
-        index.goToContactPage();
+        contact = index.goToContactPage();
 
         logStep("Input name.");
         contact.inputName("Varun Chawla");
@@ -58,20 +41,16 @@ public class ContactTests extends CoreTestIntegrationSF {
         contact.verifySubmissionMessage();
     }
 
-    @Test(dependsOnMethods = "initImpl")
-    @Description("Purchase that the user cannot submit a message with " +
-        "'invalid email input', to www.seleniumframework.com via their 'contact' page.")
+    @Test (priority = 2)
+    @Description("Verify that the user cannot submit a message with 'invalid email input', to www.seleniumframework.com via their 'contact' page.")
     @Severity(SeverityLevel.NORMAL)
     @Story("STORY 1")
     @Feature("FEATURE 1")
     @Owner("Varun Chawla")
     public void test_to_submit_message_negative_email() {
 
-        logStep("Validate we're on the correct website.");
-        Assert.assertTrue(contact.validateWebsite(), "We are on the correct website.");
-
         logStep("Navigate to 'contact' page.");
-        index.goToContactPage();
+        contact = index.goToContactPage();
 
         logStep("Input name.");
         contact.inputName("Varun Chawla");

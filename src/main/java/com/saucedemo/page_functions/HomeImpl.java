@@ -4,6 +4,7 @@ import com.saucedemo.object_repository.Home;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.SkipException;
 import utils.CoreActions;
 
 import java.util.List;
@@ -12,6 +13,10 @@ import java.util.Random;
 public class HomeImpl extends CoreActions {
     public HomeImpl(WebDriver bot) {
         super(bot);
+
+        if(!bot.findElement(Home.ARTICLES).isDisplayed()) {
+            throw new SkipException("Homepage did not get loaded.");
+        }
     }
 
     int randomN;
@@ -23,8 +28,8 @@ public class HomeImpl extends CoreActions {
         return randomN = random.nextInt(6);
     }
 
-    @Step("Select random article.")
-    public String[] pickAnyArticle() {
+    @Step("Store the name of all the articles")
+    public String[] createArticleArray() {
         waitForVisibility(Home.ARTICLES);
         List<WebElement> articleList = bot.findElements(Home.ARTICLES);
 
@@ -33,12 +38,11 @@ public class HomeImpl extends CoreActions {
         for (int i = 0; i < articleList.size(); i++ ) {
             articleArray[i] = articleList.get(i).getText();
         }
-
         return articleArray;
     }
 
     @Step("Store price of all the articles.")
-    public String[] storePrice() {
+    public String[] createPriceArray() {
         waitForVisibility(Home.PRICES);
         List<WebElement> priceList = bot.findElements(Home.PRICES);
 
@@ -51,16 +55,14 @@ public class HomeImpl extends CoreActions {
         return priceArray;
     }
 
-    @Step("Add that article to cart.")
-    public CartImpl addToCart() {
+    @Step("Add random article to cart.")
+    public void addToCart() {
         waitForVisibility(Home.ADD_TO_CARTS);
 
         // https://stackoverflow.com/a/34895458/14597561
         List<WebElement> addToCartList = bot.findElements(Home.ADD_TO_CARTS);
 
         click(addToCartList.get(randomN));
-
-        return new CartImpl(bot);
 
 /*
         https://stackoverflow.com/a/30232809/14597561
