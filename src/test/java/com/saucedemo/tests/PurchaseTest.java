@@ -6,6 +6,8 @@ import io.qameta.allure.*;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import java.security.NoSuchAlgorithmException;
+
 @Test
 @Epic("Epic 1")
 @Listeners(Listener.class)
@@ -17,7 +19,7 @@ public class PurchaseTest extends CoreTestIntegrationSD {
     @Story("STORY 1")
     @Feature("FEATURE 1")
     @Owner("Varun Chawla")
-    public void test_to_verify_item_purchase_success() {
+    public void test_to_verify_item_purchase_success() throws NoSuchAlgorithmException {
         logStep("Validate that we're on the correct website.");
         login.validateWebsite();
 
@@ -34,7 +36,7 @@ public class PurchaseTest extends CoreTestIntegrationSD {
         String articleName = home.storeArticleName();
 
         logStep("Store price of all the articles");
-        String articlePrice = home.storeArticleName();
+        String articlePrice = home.storeArticlePrice();
 
         logStep("Add that article to cart.");
         home.addToCart();
@@ -62,6 +64,9 @@ public class PurchaseTest extends CoreTestIntegrationSD {
 
         logStep("Validate that the cart is empty.");
         cart.validateCartEmptiness();
+
+        logStep("Read the overall status of all the soft asserts.");
+        cart.assertAll();
     }
 
 }
