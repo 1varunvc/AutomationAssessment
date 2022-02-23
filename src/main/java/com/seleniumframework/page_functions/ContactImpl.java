@@ -54,18 +54,20 @@ public class ContactImpl extends CoreActions {
         softAssert.assertTrue(bot.findElement(Contact.MESSAGE_SENT).isDisplayed());
     }
 
+    /**
+     * It can also be done as:
+     * ```public boolean validateInvalidEmail(){
+     *         waitForVisibility(Contact.MESSAGE_INVALID_EMAIL);
+     *         return bot.findElement(Contact.MESSAGE_INVALID_EMAIL).isDisplayed();
+     *     }```
+     */
     @Step("Validate for input of invalid email address.")
     public void validateInvalidEmail(){
         waitForVisibility(Contact.MESSAGE_INVALID_EMAIL);
         softAssert.assertTrue(bot.findElement(Contact.MESSAGE_INVALID_EMAIL).isDisplayed());
     }
 
- /*
-//    Other way to do it:
-    public boolean validateInvalidEmail(){
-        waitForVisibility(Contact.MESSAGE_INVALID_EMAIL);
-        return bot.findElement(Contact.MESSAGE_INVALID_EMAIL).isDisplayed();
-    }
+    @Step("Read the overall status of all the soft asserts.")
+    public void assertAll() { softAssert.assertAll(); }
 
- */
 }

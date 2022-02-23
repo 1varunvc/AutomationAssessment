@@ -39,6 +39,9 @@ public class ContactTests extends CoreTestIntegrationSF {
 
         logStep("Form submission message verification.");
         contact.verifySubmissionMessage();
+
+        logStep("Read the overall status of all the soft asserts.");
+        contact.assertAll();
     }
 
     @Test (priority = 2)
@@ -69,6 +72,9 @@ public class ContactTests extends CoreTestIntegrationSF {
 
         logStep("Form submission message verification.");
         contact.validateInvalidEmail();
+
+        logStep("Read the overall status of all the soft asserts.");
+        contact.assertAll();
     }
 }
 
