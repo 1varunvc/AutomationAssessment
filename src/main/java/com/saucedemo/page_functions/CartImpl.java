@@ -21,7 +21,8 @@ public class CartImpl extends CoreActions {
     @Step("Verify the correct item has been selected.")
     public void verifyArticle(String articleName, String articlePrice) {
         waitForVisibility(Cart.CART_ARTICLE_NAME);
-        softAssert.assertEquals( bot.findElement(Cart.CART_ARTICLE_NAME).getText(), articleName);
+
+        softAssert.assertEquals( bot.findElement(Cart.CART_ARTICLE_NAME).getText(), articleName, "Expected article name: " + articleName + "Actual article name:" + bot.findElement(Cart.CART_ARTICLE_NAME).getText());
 
         waitForVisibility(Cart.CART_ARTICLE_PRICE);
         softAssert.assertEquals(bot.findElement(Cart.CART_ARTICLE_PRICE).getText(), articlePrice);
@@ -37,4 +38,7 @@ public class CartImpl extends CoreActions {
     public void validateCartEmptiness() {
         softAssert.assertTrue(bot.findElements(Cart.CART_ARTICLE_NAME).isEmpty());
     }
+
+    @Step("Read the overall status of all the soft asserts.")
+    public void assertAll() { softAssert.assertAll(); }
 }
