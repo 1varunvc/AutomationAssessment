@@ -28,13 +28,13 @@ public class PurchaseTest extends CoreTestIntegrationSD {
         home = login.login();
 
         logStep("Generate random number. Range: No. of articles on the page.");
-        int randomN = home.generateRandom();
+        home.generateRandom();
 
         logStep("Pick random article.");
-        String[] articleArray = home.createArticleArray();
+        String articleName = home.storeArticleName();
 
         logStep("Store price of all the articles");
-        String[] priceArray = home.createPriceArray();
+        String articlePrice = home.storeArticleName();
 
         logStep("Add that article to cart.");
         home.addToCart();
@@ -43,7 +43,7 @@ public class PurchaseTest extends CoreTestIntegrationSD {
         cart = home.goToCart();
 
         logStep("Verify that the article added to the cart is correct.");
-        cart.verifyArticle(articleArray, priceArray, randomN);
+        cart.verifyArticle(articleName, articlePrice);
 
         logStep("Click checkout.");
         checkoutFill = cart.clickCheckout();

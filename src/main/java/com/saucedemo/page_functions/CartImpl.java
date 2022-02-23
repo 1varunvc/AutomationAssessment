@@ -19,12 +19,12 @@ public class CartImpl extends CoreActions {
     SoftAssert softAssert = new SoftAssert();
 
     @Step("Verify the correct item has been selected.")
-    public void verifyArticle(String[] articleArray, String[] priceArray, int randomN) {
+    public void verifyArticle(String articleName, String articlePrice) {
         waitForVisibility(Cart.CART_ARTICLE_NAME);
-        softAssert.assertEquals( bot.findElement(Cart.CART_ARTICLE_NAME).getText(), articleArray[randomN]);
+        softAssert.assertEquals( bot.findElement(Cart.CART_ARTICLE_NAME).getText(), articleName);
 
         waitForVisibility(Cart.CART_ARTICLE_PRICE);
-        softAssert.assertEquals(bot.findElement(Cart.CART_ARTICLE_PRICE).getText(), priceArray[randomN]);
+        softAssert.assertEquals(bot.findElement(Cart.CART_ARTICLE_PRICE).getText(), articlePrice);
     }
 
     @Step("Click checkout.")
